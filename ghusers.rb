@@ -6,25 +6,35 @@ require './email_code'
 require './ghapi'
 
 # Ask each repo for commits newer than...
-start_date = '2014-01-01'
+start_date = '2017-12-01'
 
 # List of repositories to retrieve commits from (and get their basic data)
 repos = [
-  'kubeflow/kubeflow',
-  'kubeflow/website',
-  'kubeflow/tf-operator',
-  'kubeflow/testing',
-  'kubeflow/katib',
-  'kubeflow/kubebench',
+  'kubeflow/arena'
+  'kubeflow/batch-predict'
+  'kubeflow/caffe2-operator',
+  'kubeflow/chainer-operator',
   'kubeflow/community',
+  'kubeflow/crd-validation',
   'kubeflow/experimental-kvc',
   'kubeflow/examples',
-  'kubeflow/pytorch-operator',
-  'kubeflow/example-seldon',
-  'kubeflow/caffe2-operator',
   'kubeflow/experimental-beagle',
+  'kubeflow/example-seldon',
+  'kubeflow/fairing',
+  'kubeflow/features',
+  'kubeflow/internal-acls',
+  'kubeflow/katib',
+  'kubeflow/kubeflow',
+  'kubeflow/kubebench',
+  'kubeflow/marketing-materials',
+  'kubeflow/mpi-operator',
+  'kubeflow/mxnet-operator',
+  'kubeflow/pipelines',
   'kubeflow/reporting',
-  'kubeflow/batch-predict'
+  'kubeflow/testing', 
+  'kubeflow/tf-operator',       
+  'kubeflow/pytorch-operator',   
+  'kubeflow/website',
 ]
 
 # args[0]: 1st arg is: 'r' - force repos metadata fetch, 'c' - force commits fetch, 'u' force users fetch
