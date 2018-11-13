@@ -10,15 +10,13 @@ start_date = '2017-12-01'
 
 # List of repositories to retrieve commits from (and get their basic data)
 repos = [
-  'kubeflow/arena'
-  'kubeflow/batch-predict'
+  'kubeflow/arena',
+  'kubeflow/batch-predict',
   'kubeflow/caffe2-operator',
   'kubeflow/chainer-operator',
   'kubeflow/community',
   'kubeflow/crd-validation',
-  'kubeflow/experimental-kvc',
   'kubeflow/examples',
-  'kubeflow/experimental-beagle',
   'kubeflow/example-seldon',
   'kubeflow/fairing',
   'kubeflow/features',
@@ -63,6 +61,7 @@ def ghusers(repos, start_date, args)
       puts "Processing #{repo_index + 1}/#{n_repos} #{repo_name}"
       fn = 'ghusers/' + repo_name.gsub('/', '__')
       ofn = force_repo ? SecureRandom.hex(80) : fn
+      puts "Checking for file #{ofn}"
       f = File.read(ofn)
       puts "Got repository JSON from saved file"
       h = JSON.parse f
@@ -99,6 +98,7 @@ def ghusers(repos, start_date, args)
       puts "Getting commits from #{repo_index + 1}/#{n_repos} #{repo_name}"
       fn = 'ghusers/' + repo_name.gsub('/', '__') + '__commits'
       ofn = force_commits ? SecureRandom.hex(80) : fn
+      puts "Read commits from file #{ofn}"
       f = File.read(ofn)
       puts "Got commits JSON from saved file"
       comm = JSON.parse f
@@ -149,9 +149,13 @@ def ghusers(repos, start_date, args)
       h[author['email']] = author['login']
       h[committer['email']] = committer['login']
       h.each do |email, login|
+        puts "Commit from #{email} #{login}"
         next unless email.include?('!')
+        puts "email doesn't include !"
         next if email == nil || email == ''
+        puts "email set"
         next if skip_logins.include?(login)
+        puts "Debug didn't skip login"
         if email2github.key?(email)
           if email2github[email][0] != login
             puts "Too bad, we already have email2github[#{email}] = #{email2github[email][0]}, and now new value: #{login}"

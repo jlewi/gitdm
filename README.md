@@ -24,6 +24,20 @@ This tool will generate a new `email-map` file.
 
 Check if your changes processed properly and move the file to `cncf-config/email-map` (replace)
 
+# Setting up Ruby
+
+Install bundle
+
+```
+gem install bundle
+```
+
+Install runby dependencies
+
+```
+bundle install
+```
+
 # Sync workflow
 
 Please follow the instructions from [SYNC.md](https://github.com/cncf/gitdm/blob/master/SYNC.md).
